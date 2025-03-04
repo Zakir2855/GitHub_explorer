@@ -8,13 +8,7 @@ function UserRepo(){
     let username=sessionStorage.getItem("user");
     useEffect(()=>{console.log(username)},[username])
      function fetchUserRepos() {
-        fetch(`https://api.github.com/users/${username}/repos`,{
-            method: 'GET',
-            headers: {
-              'Authorization':  `token ${githubToken}`,
-              'Accept': 'application/vnd.github.v3+json'
-            }
-          }).then((res)=>res.json()).then((ress)=>setRepos(ress));
+        fetch(`https://api.github.com/users/${username}/repos).then((res)=>res.json()).then((ress)=>setRepos(ress));
       }
     useEffect(()=>{
 fetchUserRepos();
