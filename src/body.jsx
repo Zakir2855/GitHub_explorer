@@ -21,15 +21,7 @@ navigate("/userDetails");
   function incPage() {
     setPage((page) => page + 1);
     fetch(
-      `https://api.github.com/search/repositories?q=node+in:name+language:${input}&sort=stars&order=desc&per_page=30&page=${page}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization:
-            `token ${githubToken}`,
-          Accept: "application/vnd.github.v3+json",
-        },
-      }
+      `https://api.github.com/search/repositories?q=node+in:name+language:${input}&sort=stars&order=desc&per_page=30&page=${page}`
     )
       .then((res) => res.json())
       .then((rt) => setData(rt.items))
