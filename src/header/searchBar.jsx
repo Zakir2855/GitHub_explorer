@@ -30,14 +30,7 @@ function SearchBar() {
   //default results-------------------
   useEffect(() => {
     fetch(
-      "https://api.github.com/search/repositories?q=node+in:name+language:javascript&sort=stars&order=desc&per_page=30&page=1",
-      {
-        method: 'GET',
-        headers: {
-          'Authorization':  `token ${githubToken}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      }
+      "https://api.github.com/search/repositories?q=node+in:name+language:javascript&sort=stars&order=desc&per_page=30&page=1"
     )
       .then((res) => res.json())
       .then((rt) => {
@@ -56,25 +49,13 @@ function SearchBar() {
 
     if (type === "language") {
       fetch(
-        `https://api.github.com/search/repositories?q=node+in:name+language:${input}&sort=stars&order=desc&per_page=30&page=${page}`,{
-          method: 'GET',
-          headers: {
-            'Authorization':  `token ${githubToken}`,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        }
+        `https://api.github.com/search/repositories?q=node+in:name+language:${input}&sort=stars&order=desc&per_page=30&page=${page}`
       )
         .then((res) => res.json())
         .then((rt) => setData(rt.items))
         .catch((err) => {alert(err.message); console.error("Error fetching user results:", err);});
     } else if (type === "user") {
-      fetch(`https://api.github.com/users/${input}`,{
-        method: 'GET',
-        headers: {
-          'Authorization':  `token ${githubToken}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      })
+      fetch(`https://api.github.com/users/${input}`)
         .then((res) => res.json())
         .then((rt) =>{ setProfile([rt])})
         .catch((err) => alert(err.message));
